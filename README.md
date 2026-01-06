@@ -40,7 +40,7 @@ An advanced, interactive directory listing tool that supercharges the traditiona
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/enhanced-ls.git
+git clone https://github.com/Wellz26/enhanced-ls.git
 cd enhanced-ls
 
 # Make it executable
@@ -54,7 +54,7 @@ sudo cp la /usr/local/bin/la
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/enhanced-ls.git
+git clone https://github.com/Wellz26/enhanced-ls.git
 cd enhanced-ls
 
 # Make it executable
@@ -193,9 +193,7 @@ MIT License - see LICENSE file for details
 ## Author
 
 **CyberSecWithWellz**
-- Website: [Your Website]
-- Twitter: [@YourHandle]
-- GitHub: [@YourGitHub]
+- GitHub: [https://github.com/Wellz26]
 
 ## Acknowledgments
 
