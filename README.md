@@ -1,4 +1,4 @@
-# CyberSecWithWellz Enhanced LSA
+# CyberSecWithWellz Enhanced LS
 
 An advanced, interactive directory listing tool that supercharges the traditional `ls` command with a cybersecurity-themed interface and powerful features.
 
@@ -45,13 +45,13 @@ git clone https://github.com/Wellz26/enhanced-ls.git
 cd enhanced-ls
 
 # Make it executable
-chmod +x lsa
+chmod +x huh
 
 # Copy to system path
-sudo cp lsa /usr/local/bin/lsa
+sudo cp huh /usr/local/bin/huh
 
 # Verify installation
-lsa
+huh
 ```
 
 **Method 2: Add to PATH**
@@ -59,14 +59,14 @@ lsa
 # Clone the repository
 git clone https://github.com/Wellz26/enhanced-ls.git
 cd enhanced-ls
-chmod +x lsa
+chmod +x huh
 
 # Add to ~/.bashrc
 echo "export PATH=\"\$PATH:\$HOME/enhanced-ls\"" >> ~/.bashrc
 source ~/.bashrc
 
 # Verify installation
-lsa
+huh
 ```
 
 **Method 3: Create Alias**
@@ -74,14 +74,14 @@ lsa
 # Clone the repository
 git clone https://github.com/Wellz26/enhanced-ls.git
 cd enhanced-ls
-chmod +x lsa
+chmod +x huh
 
 # Add alias to ~/.bashrc
-echo "alias lsa=\"\$HOME/enhanced-ls/la\"" >> ~/.bashrc
+echo "alias huh=\"\$HOME/enhanced-ls/la\"" >> ~/.bashrc
 source ~/.bashrc
 
 # Verify installation
-lsa
+huh
 ```
 
 ---
@@ -95,13 +95,13 @@ git clone https://github.com/Wellz26/enhanced-ls.git
 cd enhanced-ls
 
 # Make it executable
-chmod +x lsa
+chmod +x huh
 
 # Copy to system path
-sudo cp lsa /usr/local/bin/lsa
+sudo cp huh /usr/local/bin/huh
 
 # Verify installation
-lsa
+huh
 ```
 
 **Method 2: Add to PATH (for zsh users)**
@@ -109,14 +109,14 @@ lsa
 # Clone the repository
 git clone https://github.com/Wellz26/enhanced-ls.git
 cd enhanced-ls
-chmod +x lsa
+chmod +x huh
 
 # Add to ~/.zshrc
 echo "export PATH=\"\$PATH:\$HOME/enhanced-ls\"" >> ~/.zshrc
 source ~/.zshrc
 
 # Verify installation
-lsa
+huh
 ```
 
 **Method 3: Create Alias (for zsh users)**
@@ -124,14 +124,14 @@ lsa
 # Clone the repository
 git clone https://github.com/Wellz26/enhanced-ls.git
 cd enhanced-ls
-chmod +x lsa
+chmod +x huh
 
 # Add alias to ~/.zshrc
-echo "alias lsa=\"\$HOME/enhanced-ls/la\"" >> ~/.zshrc
+echo "alias huh=\"\$HOME/enhanced-ls/la\"" >> ~/.zshrc
 source ~/.zshrc
 
 # Verify installation
-lsa
+huh
 ```
 
 ---
@@ -145,18 +145,18 @@ git clone https://github.com/Wellz26/enhanced-ls.git
 cd enhanced-ls
 
 # Make it executable
-chmod +x lsa
+chmod +x huh
 
 # Copy to user bin
 mkdir -p ~/bin
-cp lsa~/bin/la
+cp huh~/bin/la
 
 # Add to PATH in ~/.bashrc
 echo "export PATH=\"\$PATH:\$HOME/bin\"" >> ~/.bashrc
 source ~/.bashrc
 
 # Verify installation
-lsa
+huh
 ```
 
 **Method 2: Direct copy to /usr/bin**
@@ -166,11 +166,11 @@ git clone https://github.com/Wellz26/enhanced-ls.git
 cd enhanced-ls
 
 # Make it executable and copy
-chmod +x lsa
-cp lsa/usr/bin/la
+chmod +x huh
+cp huh/usr/bin/la
 
 # Verify installation
-lsa
+huh
 ```
 
 ---
@@ -183,13 +183,13 @@ git clone https://github.com/Wellz26/enhanced-ls.git
 cd enhanced-ls
 
 # Make it executable
-chmod +x lsa
+chmod +x huh
 
 # Copy to system path
-sudo cp lsa /usr/local/bin/lsa
+sudo cp huh /usr/local/bin/huh
 
 # Verify installation
-lsa
+huh
 ```
 
 ---
@@ -198,13 +198,13 @@ lsa
 
 1. Download the script directly:
    ```bash
-   curl -o lsahttps://raw.githubusercontent.com/Wellz26/enhanced-ls/main/la
-   chmod +x lsa
+   curl -o huhhttps://raw.githubusercontent.com/Wellz26/enhanced-ls/main/la
+   chmod +x huh
    ```
 
 2. Move to a directory in your PATH:
    ```bash
-   sudo mv lsa/usr/local/bin/la
+   sudo mv huh/usr/local/bin/la
    ```
 
 ---
@@ -213,7 +213,7 @@ lsa
 
 **If installed to /usr/local/bin:**
 ```bash
-sudo rm /usr/local/bin/lsa
+sudo rm /usr/local/bin/huh
 ```
 
 **If using PATH or alias:**
@@ -225,7 +225,7 @@ sudo rm /usr/local/bin/lsa
 Simply run the command:
 
 ```bash
-lsa              # List current directory
+huh              # List current directory
 la /path/to/dir # List specific directory
 ```
 
@@ -284,25 +284,25 @@ la /path/to/dir # List specific directory
 
 ### List all files with hidden files
 ```bash
-lsa
+huh
 # Select option: 01
 ```
 
 ### Find large files in a directory
 ```bash
-lsa /var/log
+huh /var/log
 # Select option: 03
 ```
 
 ### Security audit for SUID files
 ```bash
-lsa /usr/bin
+huh /usr/bin
 # Select option: 13
 ```
 
 ### Search for specific file types
 ```bash
-lsa ~/Documents
+huh ~/Documents
 # Select option: 10
 # Enter pattern: *.pdf
 ```
