@@ -1,0 +1,271 @@
+#!/usr/bin/env bash
+
+# ═══════════════════════════════════════════════════════════
+#  CyberSecWithWellz - Enhanced LS Command v1.0
+#  Advanced Interactive Directory Listing Tool
+#  Platform: Linux | macOS | Windows (Git Bash/WSL)
+# ═══════════════════════════════════════════════════════════
+
+# Detect OS
+detect_os() {
+    case "$(uname -s)" in
+        Linux*)     OS='Linux';;
+        Darwin*)    OS='macOS';;
+        CYGWIN*|MINGW*|MSYS*)    OS='Windows';;
+        *)          OS='Unknown';;
+    esac
+}
+
+detect_os
+
+# Color Palette
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+BOLD='\033[1m'
+DIM='\033[2m'
+NC='\033[0m'
+
+# Cyber theme colors
+NEON_GREEN='\033[38;5;46m'
+NEON_BLUE='\033[38;5;51m'
+NEON_PURPLE='\033[38;5;165m'
+DARK_GRAY='\033[38;5;240m'
+
+# Set ls color flag based on OS
+if [[ "$OS" == "macOS" ]]; then
+    LS_COLOR_FLAG="-G"
+    LS_COLOR=""
+else
+    LS_COLOR_FLAG="--color=auto"
+    LS_COLOR="--color=auto"
+fi
+
+# Get target directory (default to current directory)
+TARGET_DIR="${1:-.}"
+
+# Check if directory exists
+if [ ! -d "$TARGET_DIR" ]; then
+    echo -e "${RED}${BOLD}[!] ERROR:${NC} Directory '${TARGET_DIR}' not found"
+    exit 1
+fi
+
+# Banner
+clear
+echo -e "${NEON_BLUE}${BOLD}"
+echo "  ╔═══════════════════════════════════════════════════════════╗"
+echo "  ║                                                           ║"
+echo "  ║   ██████╗██╗   ██╗██████╗ ███████╗██████╗ ███████╗███████╗║"
+echo "  ║  ██╔════╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔══██╗██╔════╝██╔════╝║"
+echo "  ║  ██║      ╚████╔╝ ██████╔╝█████╗  ██████╔╝███████╗█████╗  ║"
+echo "  ║  ██║       ╚██╔╝  ██╔══██╗██╔══╝  ██╔══██╗╚════██║██╔══╝  ║"
+echo "  ║  ╚██████╗   ██║   ██████╔╝███████╗██║  ██║███████║███████╗║"
+echo "  ║   ╚═════╝   ╚═╝   ╚═════╝ ╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝║"
+echo "  ║                                                           ║"
+echo "  ║              ${NEON_GREEN}CyberSecWithWellz - Enhanced LS${NEON_BLUE}              ║"
+echo "  ║${DARK_GRAY}                    Advanced Directory Scanner             ${NEON_BLUE}║"
+echo "  ╚═══════════════════════════════════════════════════════════╝"
+echo -e "${NC}"
+echo -e "${DARK_GRAY}Target: ${NC}${BOLD}${TARGET_DIR}${NC}"
+echo ""
+echo -e "${NEON_GREEN}${BOLD}[+] SELECT OPERATION:${NC}"
+echo ""
+echo -e "${NEON_PURPLE}  [01]${NC} ${GREEN}All Files${NC}              ${DARK_GRAY}(including hidden)${NC}"
+echo -e "${NEON_PURPLE}  [02]${NC} ${GREEN}Detailed View${NC}          ${DARK_GRAY}(long format with metadata)${NC}"
+echo -e "${NEON_PURPLE}  [03]${NC} ${GREEN}Sort by Size${NC}           ${DARK_GRAY}(largest first)${NC}"
+echo -e "${NEON_PURPLE}  [04]${NC} ${GREEN}Sort by Time${NC}           ${DARK_GRAY}(newest first)${NC}"
+echo -e "${NEON_PURPLE}  [05]${NC} ${GREEN}Tree Structure${NC}         ${DARK_GRAY}(hierarchical view)${NC}"
+echo -e "${NEON_PURPLE}  [06]${NC} ${GREEN}Directories Only${NC}       ${DARK_GRAY}(filter directories)${NC}"
+echo -e "${NEON_PURPLE}  [07]${NC} ${GREEN}Files Only${NC}             ${DARK_GRAY}(filter regular files)${NC}"
+echo -e "${NEON_PURPLE}  [08]${NC} ${GREEN}Human-Readable Sizes${NC}   ${DARK_GRAY}(KB, MB, GB format)${NC}"
+echo -e "${NEON_PURPLE}  [09]${NC} ${GREEN}Recursive Scan${NC}         ${DARK_GRAY}(deep directory scan)${NC}"
+echo -e "${NEON_PURPLE}  [10]${NC} ${GREEN}Pattern Search${NC}         ${DARK_GRAY}(wildcard matching)${NC}"
+echo -e "${NEON_PURPLE}  [11]${NC} ${GREEN}Permission Analysis${NC}    ${DARK_GRAY}(octal permissions)${NC}"
+echo -e "${NEON_PURPLE}  [12]${NC} ${GREEN}Group by Type${NC}          ${DARK_GRAY}(categorize files)${NC}"
+echo -e "${NEON_PURPLE}  [13]${NC} ${GREEN}Security Scan${NC}          ${DARK_GRAY}(find SUID/SGID files)${NC}"
+echo -e "${NEON_PURPLE}  [14]${NC} ${GREEN}File Count Stats${NC}       ${DARK_GRAY}(directory statistics)${NC}"
+echo -e "${NEON_PURPLE}  [15]${NC} ${GREEN}Recent Files${NC}           ${DARK_GRAY}(modified in last 24h)${NC}"
+echo ""
+echo -e "${YELLOW}  [00]${NC} ${RED}Exit${NC}"
+echo ""
+echo -e "${DARK_GRAY}═══════════════════════════════════════════════════════════${NC}"
+echo -n -e "${NEON_BLUE}${BOLD}┌──[${USER}@CyberSecWithWellz]
+└──╼ ${NC}"
+
+read choice
+
+echo ""
+echo -e "${DARK_GRAY}═══════════════════════════════════════════════════════════${NC}"
+echo ""
+
+case $choice in
+    1|01)
+        echo -e "${NEON_GREEN}${BOLD}[+] Scanning all files (including hidden)...${NC}"
+        echo ""
+        if [[ "$OS" == "macOS" ]]; then
+            ls -a -G "$TARGET_DIR"
+        else
+            ls -a $LS_COLOR "$TARGET_DIR"
+        fi
+        ;;
+    2|02)
+        echo -e "${NEON_GREEN}${BOLD}[+] Detailed view with metadata...${NC}"
+        echo ""
+        if [[ "$OS" == "macOS" ]]; then
+            ls -lah -G "$TARGET_DIR"
+        else
+            ls -lah $LS_COLOR "$TARGET_DIR"
+        fi
+        ;;
+    3|03)
+        echo -e "${NEON_GREEN}${BOLD}[+] Sorting by size (largest first)...${NC}"
+        echo ""
+        if [[ "$OS" == "macOS" ]]; then
+            ls -lhS -G "$TARGET_DIR"
+        else
+            ls -lhS $LS_COLOR "$TARGET_DIR"
+        fi
+        ;;
+    4|04)
+        echo -e "${NEON_GREEN}${BOLD}[+] Sorting by modification time (newest first)...${NC}"
+        echo ""
+        if [[ "$OS" == "macOS" ]]; then
+            ls -lht -G "$TARGET_DIR"
+        else
+            ls -lht $LS_COLOR "$TARGET_DIR"
+        fi
+        ;;
+    5|05)
+        echo -e "${NEON_GREEN}${BOLD}[+] Generating tree structure...${NC}"
+        echo ""
+        if command -v tree &> /dev/null; then
+            tree -C "$TARGET_DIR"
+        else
+            find "$TARGET_DIR" -print | sed -e "s;$TARGET_DIR;\.;g;s;[^/]*\/;|__;g;s;__|; |;g"
+        fi
+        ;;
+    6|06)
+        echo -e "${NEON_GREEN}${BOLD}[+] Filtering directories only...${NC}"
+        echo ""
+        if [[ "$OS" == "macOS" ]]; then
+            ls -d -G "$TARGET_DIR"/*/ 2>/dev/null || echo -e "${YELLOW}No directories found${NC}"
+        else
+            ls -d $LS_COLOR "$TARGET_DIR"/*/ 2>/dev/null || echo -e "${YELLOW}No directories found${NC}"
+        fi
+        ;;
+    7|07)
+        echo -e "${NEON_GREEN}${BOLD}[+] Filtering files only...${NC}"
+        echo ""
+        if [[ "$OS" == "macOS" ]]; then
+            ls -p -G "$TARGET_DIR" | grep -v /
+        else
+            ls -p $LS_COLOR "$TARGET_DIR" | grep -v /
+        fi
+        ;;
+    8|08)
+        echo -e "${NEON_GREEN}${BOLD}[+] Displaying human-readable file sizes...${NC}"
+        echo ""
+        if [[ "$OS" == "macOS" ]]; then
+            ls -lh -G "$TARGET_DIR"
+        else
+            ls -lh $LS_COLOR "$TARGET_DIR"
+        fi
+        ;;
+    9|09)
+        echo -e "${NEON_GREEN}${BOLD}[+] Initiating recursive scan...${NC}"
+        echo ""
+        if [[ "$OS" == "macOS" ]]; then
+            ls -R -G "$TARGET_DIR"
+        else
+            ls -R $LS_COLOR "$TARGET_DIR"
+        fi
+        ;;
+    10)
+        echo -n -e "${NEON_PURPLE}${BOLD}[?] Enter search pattern (e.g., *.txt, *.sh): ${NC}"
+        read pattern
+        echo ""
+        echo -e "${NEON_GREEN}${BOLD}[+] Searching for pattern: ${pattern}${NC}"
+        echo ""
+        if [[ "$OS" == "macOS" ]]; then
+            ls -G "$TARGET_DIR"/$pattern 2>/dev/null || echo -e "${YELLOW}No files found matching pattern${NC}"
+        else
+            ls $LS_COLOR "$TARGET_DIR"/$pattern 2>/dev/null || echo -e "${YELLOW}No files found matching pattern${NC}"
+        fi
+        ;;
+    11)
+        echo -e "${NEON_GREEN}${BOLD}[+] Analyzing file permissions...${NC}"
+        echo ""
+        ls -l "$TARGET_DIR" | tail -n +2 | awk '{
+            perms=$1
+            owner=$3
+            group=$4
+            file=$9
+            k=0
+            for(i=0;i<=8;i++) {
+                k+=((substr(perms,i+2,1)~/[rwx]/)*2^(8-i))
+            }
+            if(k) printf("\033[0;36m%04o\033[0m  \033[1;32m%-10s\033[0m \033[0;33m%-10s\033[0m %s\n", k, owner, group, file)
+        }'
+        ;;
+    12)
+        echo -e "${NEON_GREEN}${BOLD}[+] Grouping by file type...${NC}"
+        echo ""
+        echo -e "${NEON_BLUE}${BOLD}[DIRECTORIES]${NC}"
+        if [[ "$OS" == "macOS" ]]; then
+            ls -d -G "$TARGET_DIR"/*/ 2>/dev/null || echo -e "${DARK_GRAY}  None${NC}"
+        else
+            ls -d $LS_COLOR "$TARGET_DIR"/*/ 2>/dev/null || echo -e "${DARK_GRAY}  None${NC}"
+        fi
+        echo ""
+        echo -e "${NEON_BLUE}${BOLD}[FILES]${NC}"
+        if [[ "$OS" == "macOS" ]]; then
+            ls -p -G "$TARGET_DIR" | grep -v /
+        else
+            ls -p $LS_COLOR "$TARGET_DIR" | grep -v /
+        fi
+        ;;
+    13)
+        echo -e "${NEON_GREEN}${BOLD}[+] Scanning for SUID/SGID files (security check)...${NC}"
+        echo ""
+        if [[ "$OS" == "Windows" ]]; then
+            echo -e "${YELLOW}SUID/SGID scanning not available on Windows${NC}"
+        else
+            find "$TARGET_DIR" -type f \( -perm -4000 -o -perm -2000 \) -ls 2>/dev/null || echo -e "${NEON_GREEN}No SUID/SGID files found${NC}"
+        fi
+        ;;
+    14)
+        echo -e "${NEON_GREEN}${BOLD}[+] Calculating directory statistics...${NC}"
+        echo ""
+        echo -e "${NEON_BLUE}Total files:${NC} $(find "$TARGET_DIR" -type f 2>/dev/null | wc -l | tr -d ' ')"
+        echo -e "${NEON_BLUE}Total directories:${NC} $(find "$TARGET_DIR" -type d 2>/dev/null | wc -l | tr -d ' ')"
+        echo -e "${NEON_BLUE}Total size:${NC} $(du -sh "$TARGET_DIR" 2>/dev/null | cut -f1)"
+        if [[ "$OS" == "Windows" ]]; then
+            echo -e "${NEON_BLUE}Largest file:${NC} $(find "$TARGET_DIR" -type f -exec ls -lh {} \; 2>/dev/null | sort -k5 -h | tail -n1 | awk '{print $NF}')"
+        else
+            echo -e "${NEON_BLUE}Largest file:${NC} $(find "$TARGET_DIR" -type f -exec ls -lh {} \; 2>/dev/null | sort -k5 -hr | head -n1 | awk '{print $9, "("$5")"}')"
+        fi
+        ;;
+    15)
+        echo -e "${NEON_GREEN}${BOLD}[+] Finding recently modified files (last 24 hours)...${NC}"
+        echo ""
+        find "$TARGET_DIR" -type f -mtime -1 2>/dev/null | while read file; do echo "  $file"; done || echo -e "${YELLOW}No recently modified files${NC}"
+        ;;
+    0|00)
+        echo -e "${RED}${BOLD}[!] Exiting CyberSecWithWellz Enhanced LS...${NC}"
+        echo ""
+        exit 0
+        ;;
+    *)
+        echo -e "${RED}${BOLD}[!] Invalid option selected!${NC}"
+        echo ""
+        exit 1
+        ;;
+esac
+
+echo ""
+echo -e "${DARK_GRAY}═══════════════════════════════════════════════════════════${NC}"
+echo -e "${NEON_GREEN}${BOLD}[✓] Operation completed successfully${NC}"
+echo -e "${DARK_GRAY}═══════════════════════════════════════════════════════════${NC}"
