@@ -36,7 +36,146 @@ An advanced, interactive directory listing tool that supercharges the traditiona
 
 ## Installation
 
-### Linux / macOS
+### 🐧 Linux
+
+**Method 1: System-wide installation (Recommended)**
+```bash
+# Clone the repository
+git clone https://github.com/Wellz26/enhanced-ls.git
+cd enhanced-ls
+
+# Make it executable
+chmod +x la
+
+# Copy to system path
+sudo cp la /usr/local/bin/la
+
+# Verify installation
+la
+```
+
+**Method 2: Add to PATH**
+```bash
+# Clone the repository
+git clone https://github.com/Wellz26/enhanced-ls.git
+cd enhanced-ls
+chmod +x la
+
+# Add to ~/.bashrc
+echo "export PATH=\"\$PATH:\$HOME/enhanced-ls\"" >> ~/.bashrc
+source ~/.bashrc
+
+# Verify installation
+la
+```
+
+**Method 3: Create Alias**
+```bash
+# Clone the repository
+git clone https://github.com/Wellz26/enhanced-ls.git
+cd enhanced-ls
+chmod +x la
+
+# Add alias to ~/.bashrc
+echo "alias la=\"\$HOME/enhanced-ls/la\"" >> ~/.bashrc
+source ~/.bashrc
+
+# Verify installation
+la
+```
+
+---
+
+### 🍎 macOS
+
+**Method 1: System-wide installation (Recommended)**
+```bash
+# Clone the repository
+git clone https://github.com/Wellz26/enhanced-ls.git
+cd enhanced-ls
+
+# Make it executable
+chmod +x la
+
+# Copy to system path
+sudo cp la /usr/local/bin/la
+
+# Verify installation
+la
+```
+
+**Method 2: Add to PATH (for zsh users)**
+```bash
+# Clone the repository
+git clone https://github.com/Wellz26/enhanced-ls.git
+cd enhanced-ls
+chmod +x la
+
+# Add to ~/.zshrc
+echo "export PATH=\"\$PATH:\$HOME/enhanced-ls\"" >> ~/.zshrc
+source ~/.zshrc
+
+# Verify installation
+la
+```
+
+**Method 3: Create Alias (for zsh users)**
+```bash
+# Clone the repository
+git clone https://github.com/Wellz26/enhanced-ls.git
+cd enhanced-ls
+chmod +x la
+
+# Add alias to ~/.zshrc
+echo "alias la=\"\$HOME/enhanced-ls/la\"" >> ~/.zshrc
+source ~/.zshrc
+
+# Verify installation
+la
+```
+
+---
+
+### 🪟 Windows (Git Bash)
+
+**Method 1: Copy to system path**
+```bash
+# Clone the repository
+git clone https://github.com/Wellz26/enhanced-ls.git
+cd enhanced-ls
+
+# Make it executable
+chmod +x la
+
+# Copy to user bin
+mkdir -p ~/bin
+cp la ~/bin/la
+
+# Add to PATH in ~/.bashrc
+echo "export PATH=\"\$PATH:\$HOME/bin\"" >> ~/.bashrc
+source ~/.bashrc
+
+# Verify installation
+la
+```
+
+**Method 2: Direct copy to /usr/bin**
+```bash
+# Clone the repository
+git clone https://github.com/Wellz26/enhanced-ls.git
+cd enhanced-ls
+
+# Make it executable and copy
+chmod +x la
+cp la /usr/bin/la
+
+# Verify installation
+la
+```
+
+---
+
+### 🐧 Windows (WSL - Windows Subsystem for Linux)
 
 ```bash
 # Clone the repository
@@ -48,36 +187,38 @@ chmod +x la
 
 # Copy to system path
 sudo cp la /usr/local/bin/la
+
+# Verify installation
+la
 ```
 
-### Windows (Git Bash / WSL)
+---
 
+### 📦 Manual Installation (No Git)
+
+1. Download the script directly:
+   ```bash
+   curl -o la https://raw.githubusercontent.com/Wellz26/enhanced-ls/main/la
+   chmod +x la
+   ```
+
+2. Move to a directory in your PATH:
+   ```bash
+   sudo mv la /usr/local/bin/la
+   ```
+
+---
+
+### ❌ Uninstallation
+
+**If installed to /usr/local/bin:**
 ```bash
-# Clone the repository
-git clone https://github.com/Wellz26/enhanced-ls.git
-cd enhanced-ls
-
-# Make it executable
-chmod +x la
-
-# Add to your PATH or copy to a directory in PATH
-cp la /usr/bin/la
+sudo rm /usr/local/bin/la
 ```
 
-### Alternative: Manual Setup
-
-Add to your shell configuration (`~/.bashrc`, `~/.zshrc`, or `~/.bash_profile`):
-
-```bash
-# CyberSecWithWellz Enhanced LS
-export PATH="$PATH:/path/to/enhanced-ls"
-alias la='/path/to/enhanced-ls/la'
-```
-
-Then reload your shell:
-```bash
-source ~/.bashrc  # or source ~/.zshrc
-```
+**If using PATH or alias:**
+- Remove the line from `~/.bashrc` or `~/.zshrc`
+- Run: `source ~/.bashrc` or `source ~/.zshrc`
 
 ## Usage
 
@@ -193,7 +334,7 @@ MIT License - see LICENSE file for details
 ## Author
 
 **CyberSecWithWellz**
-- GitHub: [https://github.com/Wellz26]
+- GitHub: [@Wellz26](https://github.com/Wellz26)
 
 ## Acknowledgments
 
