@@ -38,7 +38,19 @@ An advanced, interactive directory listing tool that supercharges the traditiona
 
 ### 🐧 Linux
 
-**Method 1: System-wide installation (Recommended)**
+**Method 1: Using .deb Package (Debian/Ubuntu - Recommended)**
+```bash
+# Download the .deb package
+wget https://github.com/Wellz26/enhanced-ls/releases/download/v1.0/huh_1.0_all.deb
+
+# Install it
+sudo dpkg -i huh_1.0_all.deb
+
+# Run it
+huh
+```
+
+**Method 2: System-wide installation**
 ```bash
 # Clone the repository
 git clone https://github.com/Wellz26/enhanced-ls.git
@@ -54,7 +66,7 @@ sudo cp huh /usr/local/bin/huh
 huh
 ```
 
-**Method 2: Add to PATH**
+**Method 3: Add to PATH**
 ```bash
 # Clone the repository
 git clone https://github.com/Wellz26/enhanced-ls.git
@@ -69,7 +81,7 @@ source ~/.bashrc
 huh
 ```
 
-**Method 3: Create Alias**
+**Method 4: Create Alias**
 ```bash
 # Clone the repository
 git clone https://github.com/Wellz26/enhanced-ls.git
