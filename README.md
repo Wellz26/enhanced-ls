@@ -139,7 +139,7 @@ cd enhanced-ls
 chmod +x huh
 
 # Add alias to ~/.zshrc
-echo "alias huh=\"\$HOME/enhanced-ls/la\"" >> ~/.zshrc
+echo "alias huh=\"\$HOME/enhanced-ls/huh\"" >> ~/.zshrc
 source ~/.zshrc
 
 # Verify installation
